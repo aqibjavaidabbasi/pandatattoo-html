@@ -354,6 +354,7 @@ if (empty($modal_artists)) {
                                     <h2 class="pt-step-title">Step 1/4</h2>
                                     <p class="pt-step-description">Tattoo Style Selection</p>
                                     <p class="pt-step-instruction">SELECT ALL THAT APPLY</p>
+                                </div>
 
                                     <!-- 3x3 Grid -->
                                     <div class="pt-style-grid">
@@ -427,7 +428,6 @@ if (empty($modal_artists)) {
                                             x-model="somethingDifferent">
                                         <span>Something different (if none above apply)</span>
                                     </label>
-                                </div>
 
                                 <div class="pt-form-actions pt-form-actions-centered">
                                     <button type="button" @click="if(validateStep('step1')) step = 2"
@@ -539,6 +539,7 @@ if (empty($modal_artists)) {
                                 <div class="pt-step-header">
                                     <h2 class="pt-step-title">Step 2/4</h2>
                                     <p class="pt-step-description">Where do you want it?</p>
+                                </div>
 
                                     <!-- Interactive Body Map -->
                                     <div x-show="selectedGender" class="pt-body-map-section">
@@ -1282,7 +1283,6 @@ if (empty($modal_artists)) {
                                         </div>
                                     </div>
 
-                                </div>
                                 <div class="pt-form-actions" x-show="!isImageView">
                                     <button type="button" @click="step = 1"
                                         class="pt-btn pt-btn-secondary">BACK</button>
@@ -1558,7 +1558,7 @@ if (empty($modal_artists)) {
         overflow-x: hidden !important;
         -webkit-overflow-scrolling: touch !important;
         min-height: 0 !important;
-        padding: 24px 20px 16px !important;
+        padding: 24px 20px 0 !important;
         box-sizing: border-box !important;
     }
 
@@ -2418,14 +2418,19 @@ if (empty($modal_artists)) {
         margin-top: auto !important;
         position: sticky !important;
         bottom: 0 !important;
-        background: #0d0d0d !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+        /* soft fade instead of a hard rule, so scrolling content dissolves into the footer */
+        background: linear-gradient(180deg,
+            rgba(13, 13, 13, 0) 0,
+            rgba(13, 13, 13, 0.85) 22px,
+            #0d0d0d 36px,
+            #0d0d0d 100%) !important;
+        border-top: none !important;
         z-index: 30 !important;
         display: flex;
         justify-content: space-between !important;
         gap: 12px !important;
         width: 100% !important;
-        padding: 16px 0 4px !important;
+        padding: 40px 0 20px !important;
         box-sizing: border-box !important;
         flex-shrink: 0 !important;
     }
@@ -2551,7 +2556,7 @@ if (empty($modal_artists)) {
 
         .pt-form-fields,
         .pt-form-fields-step1 {
-            padding: 20px 16px 12px !important;
+            padding: 20px 16px 0 !important;
         }
 
         /* Style grid becomes 2 columns on mobile/tablet */
@@ -2577,7 +2582,7 @@ if (empty($modal_artists)) {
         display: none !important;
     }
     .pt-form-actions {
-            padding: 12px 0 2px !important;
+            padding: 32px 0 16px !important;
             margin-top: auto !important;
         }
     }
