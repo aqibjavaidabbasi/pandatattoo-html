@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/inc/config.php';
 require_once __DIR__ . '/inc/contentful.php';
+require_once __DIR__ . '/inc/sanitize.php';
 
 $PAGE = [
     'title'      => html_entity_decode('Gallery &#8211; Tatto Panda', ENT_QUOTES, 'UTF-8'),
@@ -187,10 +188,18 @@ $has_featured = !empty($featured_works);
                                 <span><?= count($artist['images']) ?> Pieces in Portfolio</span>
                             </div>
                         </div>
-                        <div x-data>
-                            <button @click="$dispatch('open-booking-modal')" class="hd-artist-book-btn" aria-label="Book with <?= e($artist['name']) ?>">
+                        <?php
+                        // Same entry point as the /<slug> vanity URLs: the booking page resolves the
+                        // artist server-side and locks the field, and the link stays shareable.
+                        $book_slug = wp_sanitize_key($artist['slug']);
+                        $book_id   = cf_artist_map()[$book_slug] ?? '';
+                        $book_url  = route('/booking/?artist=' . rawurlencode($book_slug)
+                            . ($book_id !== '' ? '&artistId=' . rawurlencode($book_id) : ''));
+                        ?>
+                        <div>
+                            <a href="<?= e($book_url) ?>" class="hd-artist-book-btn" aria-label="Book with <?= e($artist['name']) ?>">
                                 Book With <?= e(explode(' ', trim($artist['name']))[0]) ?>
-                            </button>
+                            </a>
                         </div>
                     </div>
 

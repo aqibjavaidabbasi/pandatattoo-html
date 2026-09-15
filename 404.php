@@ -1,5 +1,17 @@
 <?php
 require __DIR__ . '/inc/config.php';
+require_once __DIR__ . '/inc/contentful.php';
+
+// Artist vanity URLs (/dani-luz, /sophie) send visitors to that artist's booking form, as
+// they did on WordPress. ponytail: handled here rather than with its own rewrite rule —
+// every unmatched path already lands on 404.php under both Apache and the dev router.
+// 302, not 301: a browser-cached permanent redirect would outlive any future /<slug> page.
+$vanity_slug = strtolower(basename(trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '', '/')));
+$vanity_map  = cf_artist_map();
+if (isset($vanity_map[$vanity_slug])) {
+    header('Location: ' . route('/booking/?artist=' . rawurlencode($vanity_slug) . '&artistId=' . rawurlencode($vanity_map[$vanity_slug])), true, 302);
+    exit;
+}
 
 // Reached through a rewrite, not ErrorDocument (see .htaccess), so the status is ours to set.
 http_response_code(404);
