@@ -1562,6 +1562,37 @@ if (empty($modal_artists)) {
         box-sizing: border-box !important;
     }
 
+    /* Slim, inset scrollbar so it reads as part of the card, not a system chrome bar */
+    .pt-form-fields,
+    .pt-form-fields-step1 {
+        scrollbar-width: thin !important;
+        scrollbar-color: rgba(255, 255, 255, 0.18) transparent !important;
+    }
+
+    .pt-form-fields::-webkit-scrollbar,
+    .pt-form-fields-step1::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .pt-form-fields::-webkit-scrollbar-track,
+    .pt-form-fields-step1::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .pt-form-fields::-webkit-scrollbar-thumb,
+    .pt-form-fields-step1::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.18);
+        border: 3px solid transparent;
+        background-clip: content-box;
+        border-radius: 999px;
+    }
+
+    .pt-form-fields::-webkit-scrollbar-thumb:hover,
+    .pt-form-fields-step1::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.32);
+        background-clip: content-box;
+    }
+
     .pt-input-group {
         margin-top: 16px;
     }
