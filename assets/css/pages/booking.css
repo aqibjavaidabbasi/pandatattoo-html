@@ -1,0 +1,108 @@
+    /* Fix site-content padding issue on booking pages */
+    .site-content {
+        padding-top: 0 !important;
+    }
+
+    /* Hide or fix studio logo overlay that blocks form inputs */
+    .studio_logo,
+    .studio_logo_animate {
+        display: none !important;
+        pointer-events: none !important;
+    }
+
+    /* Standalone booking page styles - make modal appear inline */
+    .standalone-booking-page {
+        position: relative;
+        min-height: 100vh;
+        overflow: visible;
+        padding: 60px 20px 80px;
+        margin-top: 80px;
+    }
+
+    @media (max-width: 768px) {
+        .standalone-booking-page {
+            margin-top: 20px;
+            padding: 40px 16px 100px;
+        }
+    }
+
+    /* Every override below is prefixed with `body`.
+       The modal's own rules live in a <style> block inside booking-modal.php, i.e. later
+       in the cascade than this file, and they are written as
+       `[x-data="bookingForm()"] .pt-modal-overlay.pt-modal-open { ... !important }` —
+       0,3,0, the same specificity a `.standalone-booking-wrapper .pt-…` chain reaches.
+       Equal specificity means the later rule wins, so the un-prefixed versions of these
+       rules lost silently: the overlay stayed fixed/full-screen and covered the page
+       heading. `body ` makes them 0,3,1 and they win regardless of order. */
+
+    body .standalone-booking-wrapper .pt-modal-overlay,
+    body .standalone-booking-wrapper .pt-modal-overlay.pt-modal-open {
+        position: static !important;
+        display: block !important;
+        inset: auto !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        z-index: auto !important;
+    }
+
+    /* Inline, the card is a block in the page flow, so it must be as tall as its content —
+       the modal's 86vh/780px frame leaves a dead gap above the Next button. */
+    body .standalone-booking-wrapper .pt-modal-container {
+        margin: 0 auto !important;
+        height: auto !important;
+        max-height: none !important;
+        position: static !important;
+        /* The modal's own drop shadow is tuned for a black backdrop; on this page's cream
+           background it reads as a smudge around the card. */
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18) !important;
+    }
+
+    body .standalone-booking-wrapper .pt-modal-inner,
+    body .standalone-booking-wrapper .pt-modal-right,
+    body .standalone-booking-wrapper .pt-modal-form,
+    body .standalone-booking-wrapper .pt-modal-form > div,
+    body .standalone-booking-wrapper .pt-form-fields,
+    body .standalone-booking-wrapper .pt-form-fields-step1 {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Hide close button on standalone page */
+    body .standalone-booking-wrapper .pt-close-btn {
+        display: none !important;
+    }
+
+    /* Exception: Body selection overlay should still be a fixed fullscreen modal */
+    body .standalone-booking-wrapper .pt-body-overlay {
+        position: fixed !important;
+        inset: 0 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        z-index: 9999 !important;
+    }
+
+    /* First step is a fixed-width column; the form is a column flexbox, so it needs the
+       auto margins to sit centred instead of hugging the left edge. */
+    body .standalone-booking-wrapper .pt-form-fields-step1 {
+        width: 500px !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Mobile: 100% width and padding adjustments */
+    @media (max-width: 768px) {
+        body .standalone-booking-wrapper .pt-form-fields-step1 {
+            width: 100% !important;
+        }
+
+        /* Add padding at bottom of form to prevent footer overlap */
+        body .standalone-booking-wrapper .pt-form-fields,
+        body .standalone-booking-wrapper .pt-form-fields-step1 {
+            padding-bottom: 40px !important;
+        }
+    }

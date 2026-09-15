@@ -1,0 +1,7 @@
+.env
+.env.php
+data/cache/
+.well-known/
+panda-site (5).zip
+tools/portfolio-import.php
+wp-old-site.zip

@@ -1,0 +1,45 @@
+# Pretty URLs: /gallery/ -> gallery.php
+RewriteEngine On
+
+# NO RewriteBase on purpose. Every substitution below is relative, and Apache prepends the
+# directory this .htaccess sits in — so the site works at the domain root and under
+# /newsite alike, with nothing to edit per deploy. Hardcoding `RewriteBase /` here sends
+# /newsite/gallery/ to /gallery.php at the domain root instead.
+# Only if the host maps the directory through an Alias or a symlink (mod_rewrite cannot
+# derive the prefix through those) uncomment this and set it to the real URL path:
+#RewriteBase /newsite/
+
+# The Tattoo Fight page's JS posts to admin-ajax.php with an `action` param, as it did on
+# WordPress. Routing the old path here keeps that page's JavaScript unchanged.
+RewriteRule ^wp-admin/admin-ajax\.php$ api/admin-ajax.php [L,QSA]
+
+# Contact Form 7's client JS posts to its REST endpoint. Route it at the nomination handler
+# so the form keeps CF7's inline-validation UX instead of doing a full-page POST.
+RewriteRule ^wp-json/contact-form-7/v1/contact-forms/[0-9]+/feedback/?$ api/nominate.php [L,QSA]
+
+# The booking modal posts to the old WordPress REST path — keep it working
+RewriteRule ^wp-json/custom/v1/booking-submit/?$ api/booking-submit.php [L,QSA]
+
+# /give/ was a live alias for /giveaway/. This one is an external redirect, and with no
+# RewriteBase a relative target there gets the *filesystem* path prepended, not the URL
+# path — so the prefix is taken off REQUEST_URI instead. %1 is '/' at the domain root and
+# '/newsite/' in a subfolder.
+RewriteCond %{REQUEST_URI} ^(.*/)give/?$
+RewriteRule ^give/?$ %1giveaway/ [R=301,L]
+
+# Never serve internals
+RewriteRule ^(inc|data|reference|tests|tools)/ - [F,L]
+<FilesMatch "^\.env">   # matches .env and .env.php
+  Require all denied
+</FilesMatch>
+
+# /foo/ -> foo.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z0-9-]+)/?$ $1.php [L]
+
+# 404s go through a relative rewrite for the same reason: ErrorDocument only takes a path
+# from the domain root, which would be wrong in a subfolder. 404.php sets the status itself.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ 404.php [L]

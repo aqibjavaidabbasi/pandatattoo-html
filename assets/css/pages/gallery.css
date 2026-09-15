@@ -1,0 +1,702 @@
+    /* ========================================
+       GLOBAL SCROLL OVERRIDE FOR GALLERY PAGE
+       ======================================== */
+    html,
+    body,
+    #page,
+    .site-content,
+    .main_layout,
+    .main_work_layout {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: static !important;
+        background-color: #000000 !important;
+        color: #ffffff;
+    }
+
+    .site-content {
+        padding-top: 0 !important;
+    }
+
+    /* ========================================
+       GALLERY PAGE - MODERN DESIGN SYSTEM
+       ======================================== */
+    .main_work_layout {
+        padding: 100px 0 130px;
+        box-sizing: border-box;
+        font-family: inherit;
+        background: #000000;
+        position: relative;
+        min-height: 100vh;
+    }
+
+    /* Top Hero Header */
+    .hd-gallery-hero {
+        text-align: center;
+        padding: 0 24px;
+        margin-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hd-gallery-eyebrow {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 8px;
+    }
+
+    .hd-gallery-title {
+        font-size: clamp(32px, 6vw, 56px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        margin: 0 0 16px 0;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    .hd-gallery-subtitle {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 540px;
+        margin: 0 auto 24px;
+        line-height: 1.5;
+    }
+
+    /* Artist Navigation Pills Bar */
+    .hd-artist-nav-wrap {
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        overflow-x: auto;
+        padding: 4px 16px 8px;
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .hd-artist-nav-wrap::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hd-artist-nav-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 8px;
+        min-width: max-content;
+        margin: 0 auto;
+    }
+
+    .hd-nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: rgba(255, 255, 255, 0.85) !important;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        text-decoration: none !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .hd-nav-pill:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff !important;
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .hd-nav-pill.is-active {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+    }
+
+    .hd-nav-pill-count {
+        font-size: 11px;
+        opacity: 0.7;
+        font-weight: 700;
+    }
+
+    /* Container */
+    .hd-gallery-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
+
+    /* ========================================
+       STATE 1: ALL ARTISTS OVERVIEW GRID
+       (Matches Home Page Section 2 Design)
+       ======================================== */
+    .hd-artists-overview-wrap {
+        display: block;
+        transition: opacity 0.3s ease;
+    }
+
+    .hd-artists-overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 28px;
+        margin-top: 10px;
+    }
+
+    .artist-vertical-card-link {
+        text-decoration: none !important;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .artist-vertical-card {
+        width: 100%;
+        background: #141414;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .artist-vertical-card-link:hover .artist-vertical-card {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .artist-vertical-image {
+        width: 100%;
+        height: 380px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .artist-vertical-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        display: block;
+    }
+
+    .artist-vertical-card-link:hover .artist-vertical-image img {
+        transform: scale(1.06);
+    }
+
+    .artist-vertical-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 999px;
+        z-index: 3;
+    }
+
+    .artist-vertical-name {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 28px 20px 18px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        text-transform: capitalize;
+        background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .artist-vertical-cta-text {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .artist-vertical-card-link:hover .artist-vertical-cta-text {
+        color: #ffffff;
+        transform: translateX(3px);
+    }
+
+    /* ========================================
+       STATE 2: SINGLE ARTIST PORTFOLIO VIEW
+       (Grid of Selected Artist Only)
+       ======================================== */
+    .hd-single-artist-wrap {
+        display: none;
+        animation: hdFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hd-single-artist-wrap.is-visible {
+        display: block;
+    }
+
+    @keyframes hdFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Artist Info Header Bar */
+    .hd-artist-profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        background: #121212;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 16px 24px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .hd-back-all-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #ffffff !important;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none !important;
+    }
+
+    .hd-back-all-btn:hover {
+        background: #ffffff;
+        color: #000000 !important;
+        border-color: #ffffff;
+        transform: translateX(-3px);
+    }
+
+    .hd-artist-profile-center {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .hd-artist-avatar-thumb {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        flex-shrink: 0;
+        background: #1a1a1a;
+    }
+
+    .hd-artist-avatar-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hd-artist-profile-meta h2 {
+        font-size: clamp(20px, 3vw, 26px);
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.1;
+        color: #ffffff;
+        text-transform: capitalize;
+    }
+
+    .hd-artist-profile-meta span {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+    }
+
+    .hd-artist-book-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ff4500;
+        color: #ffffff !important;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 16px rgba(255, 69, 0, 0.35);
+        text-decoration: none !important;
+    }
+
+    .hd-artist-book-btn:hover {
+        background: #e63d00;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(255, 69, 0, 0.5);
+    }
+
+    /* Selected Artist Artworks Grid */
+    .hd-artwork-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 22px;
+    }
+
+    .hd-artwork-card {
+        display: block;
+        width: 100%;
+        height: 380px;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #141414;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none !important;
+        cursor: pointer;
+    }
+
+    .hd-artwork-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 255, 255, 0.35);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    }
+
+    .hd-artwork-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hd-artwork-card:hover img {
+        transform: scale(1.06);
+    }
+
+    /* Hover Overlay & Zoom Icon */
+    .hd-artwork-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .hd-artwork-card:hover .hd-artwork-overlay {
+        opacity: 1;
+    }
+
+    .hd-zoom-icon-badge {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0.85);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hd-artwork-card:hover .hd-zoom-icon-badge {
+        transform: scale(1);
+    }
+
+    /* ========================================
+       STICKY BOTTOM BOOK APPOINTMENT CTA
+       ======================================== */
+    .artist-section-cta-fixed {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 99999 !important;
+        pointer-events: none !important;
+    }
+
+    .artist-section-cta-fixed .ghl-booking-btn,
+    .artist-section-cta-fixed .button {
+        pointer-events: auto !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: none !important;
+        border-radius: 999px !important;
+        padding: 14px 28px !important;
+        height: auto !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.1em !important;
+        text-transform: uppercase !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        line-height: 1 !important;
+        text-decoration: none !important;
+        transition: transform 0.2s ease, background-color 0.2s ease !important;
+        min-width: 190px !important;
+    }
+
+    .artist-section-cta-fixed .button .button-content,
+    .artist-section-cta-fixed .button span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+        display: inline-block !important;
+    }
+
+    .artist-section-cta-fixed .button:hover {
+        background: #f0ece6 !important;
+        color: #000000 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* ========================================
+       FANCYBOX LIGHTBOX ENHANCEMENTS
+       ======================================== */
+    .fancybox__container {
+        z-index: 99999999 !important;
+        position: fixed !important;
+        inset: 0 !important;
+    }
+
+    .fancybox__backdrop {
+        background: rgba(0, 0, 0, 0.96) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+    }
+
+    .fancybox__toolbar {
+        position: absolute !important;
+        top: max(12px, env(safe-area-inset-top, 12px)) !important;
+        right: 14px !important;
+        z-index: 999999999 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        background: transparent !important;
+        text-shadow: none !important;
+    }
+
+    .fancybox__button--close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+        transition: all 0.2s ease !important;
+        padding: 0 !important;
+    }
+
+    .fancybox__button--close:hover {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        transform: scale(1.08) !important;
+    }
+
+    .fancybox__button--close svg {
+        width: 22px !important;
+        height: 22px !important;
+        stroke: currentColor !important;
+        stroke-width: 2.5 !important;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)) !important;
+    }
+
+    /* Hide site header, navigation, and floating book CTA when Fancybox is open */
+    body.has-fancybox .logo_wrap,
+    body.has-fancybox .main-navigation,
+    body.has-fancybox .artist-section-cta-fixed,
+    body.has-fancybox .global-slider-dots-wrapper,
+    body.compensate-for-scrollbar .logo_wrap,
+    body.compensate-for-scrollbar .main-navigation,
+    body.compensate-for-scrollbar .artist-section-cta-fixed {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .main_work_layout {
+            padding: 85px 0 110px !important;
+        }
+
+        .hd-gallery-container {
+            padding: 0 16px;
+        }
+
+        .hd-artists-overview-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .artist-vertical-image {
+            height: 320px;
+        }
+
+        .hd-artwork-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .hd-artwork-card {
+            height: 320px;
+        }
+
+        .artist-section-cta-fixed {
+            bottom: 16px !important;
+        }
+
+        .artist-section-cta-fixed .ghl-booking-btn,
+        .artist-section-cta-fixed .button {
+            padding: 13px 24px !important;
+            font-size: 12px !important;
+            min-width: 180px !important;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .hd-gallery-hero {
+            margin-bottom: 20px;
+        }
+
+        .hd-artist-nav-list {
+            justify-content: flex-start;
+        }
+
+        .hd-artists-overview-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .artist-vertical-card {
+            border-radius: 12px;
+        }
+
+        .artist-vertical-image {
+            height: 220px;
+        }
+
+        .artist-vertical-name {
+            font-size: 14px;
+            padding: 18px 8px 10px;
+        }
+
+        .artist-vertical-badge {
+            top: 8px;
+            right: 8px;
+            font-size: 9px;
+            padding: 3px 8px;
+        }
+
+        .artist-vertical-cta-text {
+            font-size: 10px;
+        }
+
+        .hd-artist-profile-header {
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .hd-artist-avatar-thumb {
+            width: 44px;
+            height: 44px;
+        }
+
+        .hd-artist-profile-meta h2 {
+            font-size: 18px;
+        }
+
+        .hd-artwork-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .hd-artwork-card {
+            height: 220px;
+            border-radius: 12px;
+        }
+    }
