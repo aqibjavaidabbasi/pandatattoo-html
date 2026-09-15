@@ -42,13 +42,14 @@ $booking_modal_args = [
 ?>
 
 <div class="standalone-booking-page">
-    <div style="max-width: 1200px; margin: 0 auto; text-align: center; margin-bottom: 20px;">
+    <div class="hd-booking-hero">
+        <div class="hd-booking-eyebrow">Panda Tattoo Studio</div>
         <?php if ($artist_name): ?>
-            <h1 style="font-size: 48px; margin-bottom: 20px; color: #1a1a1a;">Book with <?= e($artist_name) ?></h1>
-            <p style="font-size: 18px; color: #666; margin-bottom: 20px;">Fill out the form below to request an appointment</p>
+            <h1 class="hd-booking-title">Book with <?= e($artist_name) ?></h1>
+            <p class="hd-booking-subtitle">Fill out the form below to request an appointment</p>
         <?php else: ?>
-            <h1 style="font-size: 48px; margin-bottom: 20px; color: #1a1a1a;">Book Your Tattoo Appointment</h1>
-            <p style="font-size: 18px; color: #666; margin-bottom: 20px;">Fill out the form below to schedule your session</p>
+            <h1 class="hd-booking-title">Book Your Tattoo Appointment</h1>
+            <p class="hd-booking-subtitle">Fill out the form below to schedule your session</p>
         <?php endif; ?>
     </div>
     

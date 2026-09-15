@@ -7,10 +7,15 @@ require_once __DIR__ . '/inc/contentful.php';
 // every unmatched path already lands on 404.php under both Apache and the dev router.
 // 302, not 301: a browser-cached permanent redirect would outlive any future /<slug> page.
 $vanity_slug = strtolower(basename(trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '', '/')));
-$vanity_map  = cf_artist_map();
-if (isset($vanity_map[$vanity_slug])) {
-    header('Location: ' . route('/booking/?artist=' . rawurlencode($vanity_slug) . '&artistId=' . rawurlencode($vanity_map[$vanity_slug])), true, 302);
-    exit;
+if (preg_match('/^[a-z0-9-]+$/', $vanity_slug)) {
+    // cf_artist_map() is hardcoded and already lags the roster (Anthony, Ayasha, Chris Nunez
+    // and Josuel are live with no entry), so an unknown slug is resolved against Contentful
+    // before giving up — a new artist gets a vanity URL without a code change.
+    $vanity_id = cf_artist_map()[$vanity_slug] ?? (cf_artist_by_slug($vanity_slug)['id'] ?? '');
+    if ($vanity_id !== '') {
+        header('Location: ' . route('/booking/?artist=' . rawurlencode($vanity_slug) . '&artistId=' . rawurlencode($vanity_id)), true, 302);
+        exit;
+    }
 }
 
 // Reached through a rewrite, not ErrorDocument (see .htaccess), so the status is ours to set.

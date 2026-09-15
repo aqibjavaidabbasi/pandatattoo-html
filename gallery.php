@@ -272,10 +272,10 @@ $has_featured = !empty($featured_works);
 </div>
 
 <!-- Exact Home Page Style Fixed Bottom Book Appointment CTA -->
-<div class="artist-section-cta-fixed" x-data>
-    <button @click="$dispatch('open-booking-modal')" class="ghl-booking-btn button" aria-label="Book Appointment">
+<div class="artist-section-cta-fixed">
+    <a href="<?= e(route('/booking/')) ?>" data-booking-cta class="ghl-booking-btn button" aria-label="Book Appointment">
         <span class="button-content">Book Appointment</span>
-    </button>
+    </a>
 </div>
 
 <!-- Modal Structure for Booking -->
@@ -331,6 +331,20 @@ $has_featured = !empty($featured_works);
             });
         }
 
+        // The floating CTA follows the artist on screen, reusing that artist's own booking
+        // link so the URL is built in one place (the PHP above).
+        const bookingCta = document.querySelector('[data-booking-cta]');
+        const bookingCtaDefault = bookingCta ? bookingCta.getAttribute('href') : '';
+
+        function syncBookingCta(slug) {
+            if (!bookingCta) return;
+            const link = slug && slug !== 'all'
+                ? document.querySelector('#view-artist-' + slug + ' a.hd-artist-book-btn')
+                : null;
+            bookingCta.setAttribute('href', link ? link.getAttribute('href') : bookingCtaDefault);
+            bookingCta.setAttribute('aria-label', link ? link.getAttribute('aria-label') : 'Book Appointment');
+        }
+
         const overviewView = document.getElementById('view-all-artists');
         const singleArtistViews = document.querySelectorAll('.hd-single-artist-wrap');
         const navPills = document.querySelectorAll('.hd-nav-pill');
@@ -379,6 +393,8 @@ $has_featured = !empty($featured_works);
                     }
                 }
             }
+
+            syncBookingCta(targetSlug);
 
             // Scroll smoothly to gallery top if user is down the page
             if (window.scrollY > 200) {

@@ -16,7 +16,9 @@
 	        $('#menu-overlay').removeClass('active');
 	    });
 
-	    $(document).on('click', '.ghl-booking-btn, .hd-header-booking-btn', function (e) {
+	    // :not(a[href]) so a booking CTA rendered as a real link navigates instead of
+	    // opening the modal — the gallery's per-artist CTAs are links.
+	    $(document).on('click', '.ghl-booking-btn:not(a[href]), .hd-header-booking-btn:not(a[href])', function (e) {
 	        e.preventDefault();
 	        window.dispatchEvent(new CustomEvent('open-booking-modal'));
 	    });

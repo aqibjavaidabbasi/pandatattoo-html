@@ -1,6 +1,52 @@
+    /* Booking is one of the site's dark pages (like /gallery and the legal pages). Without
+       this the theme's cream body frames the dark card. */
+    html,
+    body,
+    #page,
+    .site-content,
+    .standalone-booking-page {
+        background-color: #000000 !important;
+        color: #ffffff;
+    }
+
     /* Fix site-content padding issue on booking pages */
     .site-content {
         padding-top: 0 !important;
+    }
+
+    /* Page header — same hero rhythm as the gallery's */
+    .hd-booking-hero {
+        max-width: 720px;
+        margin: 0 auto 32px;
+        padding: 0 24px;
+        text-align: center;
+    }
+
+    .hd-booking-eyebrow {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 8px;
+    }
+
+    .hd-booking-title {
+        font-size: clamp(32px, 6vw, 56px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0 0 16px;
+    }
+
+    .hd-booking-subtitle {
+        font-size: 15px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 540px;
+        margin: 0 auto;
     }
 
     /* Hide or fix studio logo overlay that blocks form inputs */
@@ -57,9 +103,6 @@
         height: auto !important;
         max-height: none !important;
         position: static !important;
-        /* The modal's own drop shadow is tuned for a black backdrop; on this page's cream
-           background it reads as a smudge around the card. */
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18) !important;
     }
 
     body .standalone-booking-wrapper .pt-modal-inner,
