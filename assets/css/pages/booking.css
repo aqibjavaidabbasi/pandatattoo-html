@@ -9,6 +9,18 @@
         color: #ffffff;
     }
 
+    /* The inline form scrolls with the page, not the theme's fixed mobile slider. */
+    @media (max-width: 991px) {
+        html,
+        body,
+        .site-content {
+            height: auto !important;
+            position: static !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+        }
+    }
+
     /* Fix site-content padding issue on booking pages */
     .site-content {
         padding-top: 0 !important;
