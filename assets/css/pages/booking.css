@@ -135,9 +135,10 @@
     /* Exception: Body selection overlay should still be a fixed fullscreen modal */
     body .standalone-booking-wrapper .pt-body-overlay {
         position: fixed !important;
-        inset: 0 !important;
         background: #0d0d0d !important;
-        z-index: 9999 !important;
+        /* Above the fixed site header (z-index 10000). Top/height come from the
+           overlay's own rule, which tracks the visual viewport — do not set inset here. */
+        z-index: 100000 !important;
     }
 
     /* First step is a fixed-width column; the form is a column flexbox, so it needs the

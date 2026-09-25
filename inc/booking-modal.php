@@ -99,27 +99,44 @@ if (empty($modal_artists)) {
                     });
                 });
 
-                // iOS Safari's toolbars shrink the visible area without changing 100dvh,
-                // which clipped the overlay's Done button. Measure it instead.
-                const setViewportHeight = () => {
-                    const h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-                    document.documentElement.style.setProperty('--pt-vh', h + 'px');
+                // iOS Safari lays position:fixed out against the layout viewport, which is
+                // taller than what you can see once the toolbars are up — that is what cut the
+                // Done button off. Measure the visual viewport and place the overlay in it.
+                const vv = window.visualViewport;
+                const setViewportBox = () => {
+                    const st = document.documentElement.style;
+                    st.setProperty('--pt-vh', ((vv && vv.height) || window.innerHeight) + 'px');
+                    st.setProperty('--pt-vt', ((vv && vv.offsetTop) || 0) + 'px');
                 };
-                setViewportHeight();
-                window.addEventListener('resize', setViewportHeight);
-                window.addEventListener('orientationchange', setViewportHeight);
-                if (window.visualViewport) {
-                    window.visualViewport.addEventListener('resize', setViewportHeight);
-                    window.visualViewport.addEventListener('scroll', setViewportHeight);
+                setViewportBox();
+                window.addEventListener('resize', setViewportBox);
+                window.addEventListener('orientationchange', setViewportBox);
+                if (vv) {
+                    vv.addEventListener('resize', setViewportBox);
+                    vv.addEventListener('scroll', setViewportBox);
                 }
+
+                // Locking the page resets its scroll — put the user back where they were.
+                let scrollBeforeOverlay = 0;
 
                 this.$watch('isImageView', (value) => {
                     if (value) {
-                        setViewportHeight();
+                        scrollBeforeOverlay = window.scrollY;
+                    }
+                    // The page behind must not scroll: on iOS that scroll is what shows and
+                    // hides the toolbars, resizing the area the overlay has to fit into. It
+                    // also produced a scrollbar that appeared to do nothing.
+                    document.body.classList.toggle('pt-body-overlay-open', value);
+                    // <html> is the scroller here, and body's overflow does not
+                    // propagate to it because the theme sets html's own overflow.
+                    document.documentElement.classList.toggle('pt-body-overlay-open', value);
+                    if (value) {
+                        setViewportBox();
                     }
                     if (!value) {
                         // When closing image view, reset viewport scale
                         handleInputBlur();
+                        requestAnimationFrame(() => window.scrollTo(0, scrollBeforeOverlay));
                     }
                 });
             },
@@ -2242,14 +2259,13 @@ if (empty($modal_artists)) {
     }
     .pt-body-overlay {
         position: fixed !important;
-        top: 0 !important;
+        /* --pt-vh / --pt-vt are the visual viewport (set in init). 100dvh is the fallback. */
+        top: var(--pt-vt, 0px) !important;
         left: 0 !important;
         right: 0 !important;
-        bottom: 0 !important;
+        bottom: auto !important;
         width: 100% !important;
         max-width: 100% !important;
-        /* --pt-vh is the real visual viewport (set in init) — iOS Safari's toolbars make
-           100dvh taller than what you can actually see, which cut off the Done button. */
         height: var(--pt-vh, 100dvh) !important;
         max-height: var(--pt-vh, 100dvh) !important;
         background: #0d0d0d !important;
@@ -2301,13 +2317,25 @@ if (empty($modal_artists)) {
         border: 1px solid rgba(255, 255, 255, 0.25) !important;
     }
 
-    /* Mobile: the site header is fixed at 60px and paints over this overlay, so the
-       title and the Front/Back/Male/Female row have to start below it. */
-    @media (max-width: 768px) {
-        .pt-body-overlay {
-            padding-top: calc(60px + max(8px, env(safe-area-inset-top, 8px))) !important;
-        }
+    /* The fixed site header (z-index 10000) painted over this overlay and cropped the
+       Front/Back/Male/Female row. The overlay is fullscreen, so take the header out. */
+    body.pt-body-overlay-open header,
+    body.pt-body-overlay-open #menu-toggle {
+        display: none !important;
     }
+
+    html.pt-body-overlay-open,
+    body.pt-body-overlay-open {
+        overflow: hidden !important;
+        touch-action: none !important;
+        overscroll-behavior: none !important;
+    }
+
+    .pt-body-overlay {
+        padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+        overscroll-behavior: contain !important;
+    }
+
 
     .pt-body-overlay-header {
         width: 100% !important;
@@ -2400,6 +2428,17 @@ if (empty($modal_artists)) {
         background: #ff4500 !important;
         color: #ffffff !important;
         border-color: #ff4500 !important;
+    }
+
+    /* Four buttons across is too cramped on a phone — two rows of two. */
+    @media (max-width: 640px) {
+        .pt-body-overlay-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .pt-body-overlay-btn {
+            padding: 10px 4px !important;
+            font-size: 12px !important;
+        }
     }
 
     .pt-body-overlay-status {
