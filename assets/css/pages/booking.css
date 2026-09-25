@@ -136,7 +136,7 @@
     body .standalone-booking-wrapper .pt-body-overlay {
         position: fixed !important;
         inset: 0 !important;
-        background: rgba(0, 0, 0, 0.95) !important;
+        background: #0d0d0d !important;
         z-index: 9999 !important;
     }
 

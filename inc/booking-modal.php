@@ -99,7 +99,24 @@ if (empty($modal_artists)) {
                     });
                 });
 
+                // iOS Safari's toolbars shrink the visible area without changing 100dvh,
+                // which clipped the overlay's Done button. Measure it instead.
+                const setViewportHeight = () => {
+                    const h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+                    document.documentElement.style.setProperty('--pt-vh', h + 'px');
+                };
+                setViewportHeight();
+                window.addEventListener('resize', setViewportHeight);
+                window.addEventListener('orientationchange', setViewportHeight);
+                if (window.visualViewport) {
+                    window.visualViewport.addEventListener('resize', setViewportHeight);
+                    window.visualViewport.addEventListener('scroll', setViewportHeight);
+                }
+
                 this.$watch('isImageView', (value) => {
+                    if (value) {
+                        setViewportHeight();
+                    }
                     if (!value) {
                         // When closing image view, reset viewport scale
                         handleInputBlur();
@@ -2225,24 +2242,26 @@ if (empty($modal_artists)) {
     }
     .pt-body-overlay {
         position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        max-height: 100dvh !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        /* --pt-vh is the real visual viewport (set in init) — iOS Safari's toolbars make
+           100dvh taller than what you can actually see, which cut off the Done button. */
+        height: var(--pt-vh, 100dvh) !important;
+        max-height: var(--pt-vh, 100dvh) !important;
         background: #0d0d0d !important;
         z-index: 999999999 !important;
         display: flex;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: space-between !important;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding: 16px 12px !important;
-        padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
-        padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
+        justify-content: flex-start !important;
+        /* Nothing scrolls: the body map shrinks so header and footer always fit. */
+        overflow: hidden !important;
+        padding: 12px !important;
+        padding-bottom: max(12px, env(safe-area-inset-bottom, 12px)) !important;
         box-sizing: border-box !important;
     }
 
@@ -2286,10 +2305,7 @@ if (empty($modal_artists)) {
        title and the Front/Back/Male/Female row have to start below it. */
     @media (max-width: 768px) {
         .pt-body-overlay {
-            padding-top: calc(60px + max(12px, env(safe-area-inset-top, 12px))) !important;
-        }
-        .pt-body-map-svg {
-            max-height: calc(100dvh - 280px) !important;
+            padding-top: calc(60px + max(8px, env(safe-area-inset-top, 8px))) !important;
         }
     }
 
@@ -2399,10 +2415,11 @@ if (empty($modal_artists)) {
 
     .pt-svg-wrapper {
         width: 100% !important;
-        max-width: 280px !important;
+        max-width: 380px !important;
         margin: 0 auto !important;
-        flex: 1 1 auto !important;
+        flex: 1 1 0 !important;
         min-height: 0 !important;
+        overflow: hidden !important;
         display: flex;
         align-items: center !important;
         justify-content: center !important;
@@ -2410,15 +2427,17 @@ if (empty($modal_artists)) {
     }
 
     .pt-body-map-svg {
-        width: 100% !important;
-        height: auto !important;
-        max-height: calc(100dvh - 210px) !important;
+        width: auto !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
         display: block !important;
         object-fit: contain !important;
     }
 
     .pt-body-overlay-footer {
         width: 100% !important;
+        flex: 0 0 auto !important;
         max-width: 380px !important;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
