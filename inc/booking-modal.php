@@ -2246,6 +2246,53 @@ if (empty($modal_artists)) {
         box-sizing: border-box !important;
     }
 
+
+    /* Toast — fixed to the bottom of the viewport so validation errors are visible
+       wherever the user is in the form (they press Next at the bottom). */
+    .pt-toast {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        width: calc(100% - 32px) !important;
+        max-width: 420px !important;
+        z-index: 9999999999 !important;
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        line-height: 1.35 !important;
+        text-align: center !important;
+        white-space: pre-line !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+        box-sizing: border-box !important;
+        /* It can sit over the Next button — taps must still reach it. */
+        pointer-events: none !important;
+    }
+
+    .pt-toast-error {
+        background: #ff4500 !important;
+        color: #ffffff !important;
+        border: 1px solid #ff4500 !important;
+    }
+
+    .pt-toast-success {
+        background: #111111 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* Mobile: the site header is fixed at 60px and paints over this overlay, so the
+       title and the Front/Back/Male/Female row have to start below it. */
+    @media (max-width: 768px) {
+        .pt-body-overlay {
+            padding-top: calc(60px + max(12px, env(safe-area-inset-top, 12px))) !important;
+        }
+        .pt-body-map-svg {
+            max-height: calc(100dvh - 280px) !important;
+        }
+    }
+
     .pt-body-overlay-header {
         width: 100% !important;
         max-width: 380px !important;
