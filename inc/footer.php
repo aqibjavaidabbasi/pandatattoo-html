@@ -31,7 +31,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<span class="site-copyright">
-				Copyright &copy; <?= date('Y') ?> <a href="<?= base_url() ?>/"> Tatto Panda</a>			</span>
+				Copyright &copy; <?= date('Y') ?> <a href="<?= base_url() ?>/"> Panda Tattoo</a>			</span>
 			<span class="sep">&nbsp;&bull;&nbsp;</span>
 			<span class="privacy-policy">
 				<a href="<?= route('/privacy-policy/') ?>">Privacy Policy</a>

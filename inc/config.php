@@ -133,4 +133,4 @@ function current_path(): string {
 }
 
 /** Page metadata set by each page before including head.php. */
-$PAGE = ['title' => 'Tatto Panda', 'body_class' => '', 'css' => null];
+$PAGE = ['title' => 'Panda Tattoo', 'body_class' => '', 'css' => null];

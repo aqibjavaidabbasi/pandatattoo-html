@@ -4,7 +4,7 @@ require_once __DIR__ . '/inc/contentful.php';
 require_once __DIR__ . '/inc/sanitize.php';
 
 $PAGE = [
-    'title'      => html_entity_decode('Gallery &#8211; Tatto Panda', ENT_QUOTES, 'UTF-8'),
+    'title'      => html_entity_decode('Gallery &#8211; Panda Tattoo', ENT_QUOTES, 'UTF-8'),
     'body_class' => 'wp-singular page-template page-template-templates page-template-work page-template-templateswork-php page page-id-14 wp-custom-logo wp-embed-responsive wp-theme-studio wp-child-theme-studio-child no-sidebar excerpt-image-top',
     'css'        => null,
 ];

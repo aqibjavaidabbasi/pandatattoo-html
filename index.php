@@ -23,7 +23,7 @@ require __DIR__ . '/inc/config.php';
 require_once __DIR__ . '/inc/contentful.php';
 
 $PAGE = [
-    'title'      => 'Tatto Panda',
+    'title'      => 'Panda Tattoo',
     'body_class' => 'home wp-singular page-template page-template-templates page-template-home-dev page-template-templateshome-dev-php page page-id-130 wp-custom-logo wp-embed-responsive wp-theme-studio wp-child-theme-studio-child no-sidebar excerpt-image-top',
     'css'        => 'home.css',
 ];

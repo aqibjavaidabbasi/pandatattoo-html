@@ -42,7 +42,7 @@ your first edit. This file is the standing contract; the task prompt is what cha
   <?php
   require __DIR__ . '/inc/config.php';
   $PAGE = [
-      'title'      => 'Gear – Tatto Panda',
+      'title'      => 'Gear – Panda Tattoo',
       'body_class' => '...copy verbatim from the reference capture...',
       'css'        => 'gear.css',   // page CSS, or null
   ];
