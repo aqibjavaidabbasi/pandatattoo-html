@@ -42,7 +42,7 @@ db()->prepare(
 // wp_mail() was already doing: no SMTP plugin was installed on the WordPress site.
 $sent = mail(
     $email,
-    'Your Vote OTP - Tattoo Panda',
+    'Your Vote OTP - Panda Tattoo',
     "Your one-time password is: {$otp}\n\nThis code expires in 5 minutes.",
     'Content-Type: text/html; charset=UTF-8'
 );

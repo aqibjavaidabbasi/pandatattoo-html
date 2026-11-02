@@ -38,11 +38,11 @@ $contentful_image_url = static function (string $url, array $params = []): strin
 $attr_url = static fn (?string $url): string => str_replace('&amp;', '&#038;', eu($url));
 
 $featured_works = [
-    ['title' => 'Tattoo Panda 5', 'file' => 'Tatu-Panda-Tattoos-19-1.jpg', 'src' => 'Tatu-Panda-Tattoos-19-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-19-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-19-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-19-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-19-1.jpg 1080w']],
-    ['title' => 'Tattoo Panda 4', 'file' => 'Tatu-Panda-Tattoos-17-1.jpg', 'src' => 'Tatu-Panda-Tattoos-17-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-17-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-17-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-17-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-17-1.jpg 1080w']],
-    ['title' => 'Tattoo Panda 3', 'file' => 'Tatu-Panda-Tattoos-7-1.jpg', 'src' => 'Tatu-Panda-Tattoos-7-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-7-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-7-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-7-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-7-1.jpg 1080w']],
-    ['title' => 'Tattoo Panda 2', 'file' => 'Tatu-Panda-Tattoos-2-1.jpg', 'src' => 'Tatu-Panda-Tattoos-2-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-2-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-2-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-2-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-2-1.jpg 1080w']],
-    ['title' => 'Tattoo Panda 1', 'file' => 'Tatu-Panda-Tattoos-11-1.jpg', 'src' => 'Tatu-Panda-Tattoos-11-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-11-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-11-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-11-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-11-1.jpg 1080w']],
+    ['title' => 'Panda Tattoo 5', 'file' => 'Tatu-Panda-Tattoos-19-1.jpg', 'src' => 'Tatu-Panda-Tattoos-19-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-19-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-19-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-19-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-19-1.jpg 1080w']],
+    ['title' => 'Panda Tattoo 4', 'file' => 'Tatu-Panda-Tattoos-17-1.jpg', 'src' => 'Tatu-Panda-Tattoos-17-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-17-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-17-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-17-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-17-1.jpg 1080w']],
+    ['title' => 'Panda Tattoo 3', 'file' => 'Tatu-Panda-Tattoos-7-1.jpg', 'src' => 'Tatu-Panda-Tattoos-7-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-7-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-7-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-7-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-7-1.jpg 1080w']],
+    ['title' => 'Panda Tattoo 2', 'file' => 'Tatu-Panda-Tattoos-2-1.jpg', 'src' => 'Tatu-Panda-Tattoos-2-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-2-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-2-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-2-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-2-1.jpg 1080w']],
+    ['title' => 'Panda Tattoo 1', 'file' => 'Tatu-Panda-Tattoos-11-1.jpg', 'src' => 'Tatu-Panda-Tattoos-11-1-768x960.jpg', 'srcset' => ['Tatu-Panda-Tattoos-11-1-768x960.jpg 768w', 'Tatu-Panda-Tattoos-11-1-240x300.jpg 240w', 'Tatu-Panda-Tattoos-11-1-819x1024.jpg 819w', 'Tatu-Panda-Tattoos-11-1.jpg 1080w']],
 ];
 $has_featured = !empty($featured_works);
 ?>
