@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $PAGE = [
-    'title'      => html_entity_decode('Privacy Policy &#8211; Tatto Panda', ENT_QUOTES, 'UTF-8'),
+    'title'      => html_entity_decode('Privacy Policy &#8211; Panda Tattoo', ENT_QUOTES, 'UTF-8'),
     'body_class' => 'privacy-policy wp-singular page-template-default page page-id-3 wp-custom-logo wp-embed-responsive wp-theme-studio wp-child-theme-studio-child no-sidebar excerpt-image-top',
     'css'        => 'privacy-policy.css',
 ];

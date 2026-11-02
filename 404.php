@@ -23,7 +23,7 @@ http_response_code(404);
 
 $search_value = isset($_GET['s']) && is_scalar($_GET['s']) ? (string) $_GET['s'] : '';
 $PAGE = [
-    'title'      => html_entity_decode('Page not found &#8211; Tatto Panda', ENT_QUOTES, 'UTF-8'),
+    'title'      => html_entity_decode('Page not found &#8211; Panda Tattoo', ENT_QUOTES, 'UTF-8'),
     'body_class' => 'error404 wp-custom-logo wp-embed-responsive wp-theme-studio wp-child-theme-studio-child no-sidebar excerpt-image-top',
     'css'        => null,
 ];

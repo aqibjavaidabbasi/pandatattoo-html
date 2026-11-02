@@ -13,7 +13,7 @@ require_once __DIR__ . '/config.php';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<title><?= e($PAGE['title'] ?? 'Tatto Panda') ?></title>
+<title><?= e($PAGE['title'] ?? 'Panda Tattoo') ?></title>
 <meta name="robots" content="max-image-preview:large">
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
